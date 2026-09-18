@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: قرارداد API و قرارداد سبک
+    url: https://github.com/fredrodrifger/notebook-backend/tree/main/docs
+    about: قبل از باز کردن ایشو، قرارداد API و قرارداد سبک را ببین.

@@ -1,0 +1,29 @@
+name: Feature request
+description: پیشنهاد قابلیت جدید برای API
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: مسئله چیست؟
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: راه‌حل پیشنهادی (شامل شکل درخواست/پاسخ اگر مسیر API است)
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: بخش مربوطه
+      options:
+        - http (routes/controllers/resources)
+        - persistence (models/repositories/migrations)
+        - domain (actions/services)
+        - filters
+        - docs
+        - ci
+    validations:
+      required: true

@@ -1,0 +1,29 @@
+name: Bug report
+description: گزارش یک ایراد قابل بازتولید در API
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: چه اتفاقی افتاد؟
+      description: رفتار واقعی و رفتار انتظاری
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: بازتولید
+      placeholder: |
+        curl -s -X POST http://127.0.0.1:8000/api/notes -H 'Content-Type: application/json' -d '{"title":""}'
+        خروجی واقعی: …
+        خروجی انتظاری طبق docs/api-contract.md: …
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: کامیت
+      placeholder: e.g. 4f2c1ab
+    validations:
+      required: true

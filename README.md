@@ -44,6 +44,29 @@ php artisan serve --host=127.0.0.1 --port=8000
 (اسکریپت `scripts/dev-all.sh` این ریپو را از مسیر خواهر پیدا می‌کند و بعد از آماده شدن
 `/api/health` سرویس UI را اجرا می‌کند).
 
+## اجرای لایو (روی دامنه)
+
+```bash
+cp .env.example .env && php artisan key:generate    # اگر .env نیست
+cat > .env.live <<EOF
+NOTEBOOK_HOST=0.0.0.0
+NOTEBOOK_PORT=5353
+APP_ENV=production
+APP_DEBUG=false
+NOTEBOOK_API_TOKEN=$(openssl rand -hex 24)
+EOF
+bash scripts/deploy-live.sh
+```
+
+`scripts/deploy-live.sh` فرانت‌اند را build می‌کند، فایل‌های `dist` را در `public/` منتشر می‌کند
+(تا UI و API روی یک مبدأ و یک پورت باشند)، `migrate --force` می‌زند و سرویس را روی
+`NOTEBOOK_HOST:NOTEBOOK_PORT` بالا می‌آورد. مسیرهای `/api/*` با هدر `X-Notebook-Token`
+محافظت می‌شوند؛ `/api/health` باز می‌ماند تا اسکریپت‌های اجرا آمادگی را بسنجند.
+
+- اگر `.env.live` نباشد یا توکنش خالی باشد، اسکریپت **عمداً** بالا نمی‌آید.
+- در حالت production، توکن خالی باعث رد شدن همهٔ درخواست‌ها می‌شود (نه باز شدن API).
+- `/public/index.html` و `/public/assets` ساختهٔ build هستند و در گیت نیستند.
+
 ## بررسی پیش از PR
 
 ```bash

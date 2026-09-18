@@ -12,14 +12,21 @@ class HealthController extends Controller
 {
     public function __invoke(): JsonResponse
     {
-        return $this->sendResponse([
+        $payload = [
             'state' => 'ok',
             'database' => db_connection_ok() ? 'ok' : 'unavailable',
             'notes_table' => $this->notesTableState(),
-            'laravel_version' => app()->version(),
-            'php_version' => PHP_VERSION,
             'checked_at' => now()->toIso8601String(),
-        ], null, Response::HTTP_OK);
+        ];
+
+        // The probe is open by design (the service script polls it before the UI starts), so the
+        // framework and PHP versions are only disclosed outside production.
+        if (! app()->isProduction()) {
+            $payload['laravel_version'] = app()->version();
+            $payload['php_version'] = PHP_VERSION;
+        }
+
+        return $this->sendResponse($payload, null, Response::HTTP_OK);
     }
 
     private function notesTableState(): string

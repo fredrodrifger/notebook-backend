@@ -19,7 +19,7 @@ class NoteResource extends BaseResource
         return [
             NoteInterface::UUID => $this->getUuid(),
             NoteInterface::TITLE => $this->getTitle(),
-            NoteInterface::CONTENT => $this->getContent(),
+            NoteInterface::CONTENT => $this->getContent() ?? '',
             NoteInterface::TAGS => $this->getTags() ?? [],
             NoteInterface::IS_PINNED => (bool) $this->getIsPinned(),
             Model::CREATED_AT => $this->getCreatedAt()?->toIso8601String(),

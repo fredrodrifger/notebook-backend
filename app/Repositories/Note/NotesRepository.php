@@ -5,6 +5,7 @@ namespace App\Repositories\Note;
 use App\Interfaces\Models\Note\NoteInterface;
 use App\Models\Note\Note;
 use App\Repositories\BaseRepository;
+use Illuminate\Database\Eloquent\Model;
 
 class NotesRepository extends BaseRepository
 {
@@ -31,7 +32,7 @@ class NotesRepository extends BaseRepository
 
     public function generalStats(): array
     {
-        $latestNote = Note::query()->latest(NoteInterface::UPDATED_AT)->first();
+        $latestNote = Note::query()->latest(Model::UPDATED_AT)->first();
 
         return [
             'notes_count' => Note::query()->count(),

@@ -25,6 +25,12 @@ Laravel 12 · `alimousavi/filoquent` (فیلترهای اعلانی) · SQLite �
 ## اجرا
 
 ```bash
+bash scripts/serve.sh          # محیط را آماده می‌کند، migrate می‌زند، سرویس را بالا می‌آورد
+```
+
+یا دستی:
+
+```bash
 cp .env.example .env          # اگر .env ندارید
 php artisan key:generate
 touch database/database.sqlite
@@ -33,6 +39,10 @@ php artisan serve --host=127.0.0.1 --port=8000
 ```
 
 بررسی سلامت: `curl -s http://127.0.0.1:8000/api/health`
+
+برای بالا آوردن هم‌زمان بک‌اند و فرانت‌اند، در ریپوی فرانت‌اند `npm run dev:all` را بزنید
+(اسکریپت `scripts/dev-all.sh` این ریپو را از مسیر خواهر پیدا می‌کند و بعد از آماده شدن
+`/api/health` سرویس UI را اجرا می‌کند).
 
 ## بررسی پیش از PR
 

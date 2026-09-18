@@ -1,0 +1,8 @@
+{
+  "preset": "laravel",
+  "rules": {
+    "class_definition": {
+      "multi_line_extends_each_single_line": true
+    }
+  }
+}

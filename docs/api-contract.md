@@ -46,7 +46,11 @@
 ### `GET /api/notes` — فهرست
 
 پارامترها (همه اختیاری، همه در `NotesFilter` اعلان‌شده — پارامتر اعلان‌نشده نادیده گرفته می‌شود):
-`page`، `per_page`، `search` (روی `title` و `content`)، `tag`، `is_pinned`، `order_by`، `order_direction`
+`page`، `per_page`، `search` (روی `title` و `content`)، `tag`، `isPinned`، `orderBy`
+
+نام پارامترها قرارداد `filoquent` است: فیلترها با همان کلیدِ اعلان‌شده در `filterables` خوانده
+می‌شوند (camelCase) و مرتب‌سازی با `orderBy=field:direction` و در صورت چند ستون با کاما:
+`orderBy=is_pinned:desc,updated_at:desc`. ستون‌هایی که در `orderables` اعلان نشده باشند نادیده می‌مانند.
 
 ```json
 {
